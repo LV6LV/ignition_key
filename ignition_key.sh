@@ -6,6 +6,7 @@ GREEN=`tput bold && tput setaf 2`
 YELLOW=`tput bold && tput setaf 3`
 BLUE=`tput bold && tput setaf 4`
 NC=`tput sgr0`
+tool_loc=`/opt/tools`
 
 function RED(){
 	echo -e "\n${RED}${1}${NC}"
@@ -34,21 +35,42 @@ BLUE "Installing git..."
 sudo apt install -y git
 
 BLUE "Installing curl..."
-sudo apt-get install -y curl
+sudo apt install -y curl
+
+BLUE "Installing funny packages..."
+sudo apt install -y figlet toilet cowsay fortune boxes lolcat sl
+
+BLUE "Installing thefuck (cmd spelling corrector)..."
+sudo apt install -y thefuck
+
+BLUE "Installing btop & htop..."
+sudo apt install -y btop htop
+
+BLUE "Installing ranger (CLI file manager)..."
+sudo apt install -y ranger
+
+BLUE "Installing mosh..."
+sudo apt install -y mosh
+
+BLUE "Installing tree..."
+sudo apt install -y tree
+
+BLUE "Installing nano..."
+sudo apt install -y nano
 
 #Various Applications
 BLUE "Installing Sublime Text..." # according to https://www.sublimetext.com/docs/3/linux_repositories.html-
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt-get install -y apt-transport-https
+sudo apt install -y apt-transport-https
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt-get update
-sudo apt-get install -y sublime-text
+sudo apt update
+sudo apt install -y sublime-text
 
 BLUE "Installing sqlitebrowser..."
-sudo apt-get install -y sqlitebrowser
+sudo apt install -y sqlitebrowser
 
 BLUE "Installing Wireshark..."
-sudo apt-get install -y wireshark
+sudo apt install -y wireshark
 
 BLUE "Installing Atom..."
 wget "https://atom.io/download/deb" -O atom.deb
@@ -78,7 +100,7 @@ sudo apt install -y mplayer
 # fi
 
 BLUE "Installing docker..."
-sudo apt-get install -y docker.io
+sudo apt install -y docker.io
 sudo groupadd docker
 sudo usermod -aG docker `logname`
 
@@ -88,37 +110,20 @@ sudo apt install -y vagrant
 BLUE "Removing boilerplate home directories..."
 rmdir ~/Desktop ~/Documents ~/Downloads ~/Music ~/Pictures ~/Public ~/Templates ~/Videos
 
-BLUE "Installing guake..."
-sudo apt-get install -y guake
+# BLUE "Installing guake..."
+# sudo apt-get install -y guake
 
 BLUE "Installing openvpn..."
-sudo apt-get install -y openvpn
+sudo apt install -y openvpn
 
 BLUE "Installing nmap..."
-sudo apt-get install -y nmap
+sudo apt install -y nmap
 
 # BLUE "Installing pinta..."
 # sudo apt-get install -y pinta
 
 BLUE "Installing exiftool..."
-sudo apt-get install -y exiftool
-
-# BLUE "Install Real VNC Viewer..."
-# wget "https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.17.1113-Linux-x64.deb" -O vnc_viewer.deb
-# dpkg -i vnc_viewer.deb
-# rm vnc_viewer.deb
-
-# BLUE "Install Real VNC Connect (Server)..."
-# wget 'https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.2.1-Linux-x64.deb' -O vnc_server.deb
-# dpkg -i vnc_server.deb
-# rm vnc_server.deb
-
-# BLUE "Adding VNC Connect (Server) service to the default startup /etc/rc.local..."
-# grep "vncserver-x11-serviced.service" /etc/rc.local
-# if [ $? -eq 1 ]
-# then
-# 	echo "systemctl start vncserver-x11-serviced.service" >> ~/etc/rc.local
-# fi
+sudo apt install -y exiftool
 
 BLUE "Installing xclip..."
 sudo apt install -y xclip
@@ -128,33 +133,56 @@ then
 	echo "alias xclip='xclip -selection clipboard'" >> ~/.bashrc
 fi
 
-BLUE "Installing pip..."
-sudo apt-get install -y python-pip
-
-BLUE "Installing Python PIL..."
-sudo apt-get install -y python-pil
-
+#Installing python and various packages
 BLUE "Installing idle (Python IDE)..."
 sudo apt install -y idle
+
+BLUE "Installing python3..."
+sudo apt install -y python3
+
+BLUE "Installing pip..."
+sudo apt install -y python-pip
+
+BLUE "Installing Python PIL..."
+sudo apt install -y python-pil
 
 BLUE "Installing python-requests..."
 pip install requests
 
 BLUE "Installing Python flask..."
-sudo pip install flask
+pip install flask
 
 BLUE "Installing Python flask-login..."
-sudo pip install flask-login
+pip install flask-login
 
 BLUE "Installing Python colorama..."
-sudo pip install colorama
+pip install colorama
 
 BLUE "Installing Python passlib..."
-sudo pip install passlib
+pip install passlib
 
 BLUE "Installing Python pwntools..."
-sudo pip install pwntools
+pip install pwntools
 
+BLUE "Installing Python scapy..."
+pip install scapy
+
+BLUE "Installing Python library netifaces..."
+pip install netifaces
+
+BLUE "Installing Python library iptools..."
+pip install iptools
+
+BLUE "Installing Python library OpenSSL..."
+pip install pyopenssl
+
+BLUE "Installing Python library pydispatch..."
+pip install pydispatch
+
+BLUE "Installing impacket..."
+pip install impacket
+
+#Installing various tools
 BLUE "Installing Binwalk..."
 sudo apt install -y binwalk
 
@@ -169,21 +197,6 @@ sudo apt install -y bsdgames
 
 BLUE "Installing hexedit..."
 sudo apt install -y hexedit	
-
-# BLUE "Installing Go..."
-# sudo apt install -y golang-go
-# BLUE "Adding GOPATH and GOBIN to .bashrc, so future installs are easy.."
-# grep "export GOPATH" ~/.bashrc
-# if [ $? -eq 1 ]
-# then
-# 	echo "export GOPATH=\$HOME/.go/" >> ~/.bashrc
-# fi
-# grep "export GOBIN" ~/.bashrc
-# if [ $? -eq 1 ]
-# then
-# 	echo "export GOBIN=\$HOME/.go/bin" >> ~/.bashrc
-# 	echo "export PATH=\$PATH:\$GOBIN" >> ~/.bashrc
-# fi
 
 BLUE "Installing sqlite..."
 sudo apt install -y sqlite	
@@ -207,8 +220,8 @@ rm Hopper-v4-4.3.14-Linux.deb
 
 BLUE "Installing Oracle Java 8..."
 echo "" | sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install -y oracle-java8-installer
+sudo apt update
+sudo apt install -y oracle-java8-installer
 
 BLUE "Downloading stegsolve.jar..."
 wget "http://www.caesum.com/handbook/Stegsolve.jar" -O "stegsolve.jar"
@@ -226,18 +239,6 @@ sudo apt install -y steghide
 BLUE "Installing ffmpeg..."
 sudo apt install -y ffmpeg
 
-BLUE "Installing Python library netifaces..."
-sudo pip install netifaces
-
-BLUE "Installing Python library iptools..."
-sudo pip install iptools
-
-BLUE "Installing Python library OpenSSL..."
-sudo pip install pyopenssl
-
-BLUE "Installing Python library pydispatch..."
-sudo pip install pydispatch
-
 BLUE "Installing cmake..."
 sudo apt install -y cmake
 
@@ -247,11 +248,88 @@ sudo apt install -y sshpass
 BLUE "Installing tcpflow..."
 sudo apt install -y tcpflow
 
-BLUE "Installing Python scapy..."
-sudo pip install scapy
-
 BLUE "Installing the thing that 7z2john.pl needs..."
-sudo apt install libcompress-raw-lzma-perl 
+sudo apt install -y libcompress-raw-lzma-perl 
 
 BLUE "Installing dos2unix..."
-sudo apt install libcompress-raw-lzma-perl
+sudo apt install -y dos2unix
+
+BLUE "Installing autopsy..."
+sudo apt install -y autopsy
+
+BLUE "Installing openvas..."
+sudo apt install -y openvas
+
+BLUE "Installing samba-client..."
+sudo apt install -y smbclient
+
+BLUE "Installing samba..."
+sudo apt install -y samba
+
+BLUE "Installing hashcat..."
+sudo apt install -y hashcat
+
+# BLUE "Installing mimikatz (Kali-Linux)..."
+# sudo apt install mimikatz
+
+BLUE "Installing exploitdb..."
+sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
+sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+
+# BLUE "Installing exploitdb (Kali-Linux)..."
+#  sudo apt -y install exploitdb
+#  sudo apt -y install exploitdb-bin-sploits exploitdb-papers
+
+# BLUE "Installing metasploit-framework..."
+# curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
+
+#Installing git tools and packages
+BLUE "Installing pusheen-sl..."
+git clone https://github.com/tryton-vanmeer/pusheen-sl.git tool_loc/pusheen
+sudo tool_loc/pusheen/install.sh
+
+BLUE "Installing php-reverse-shell..."
+git clone https://github.com/slattman/php-reverse-shell.git tool_loc/php-reverse-shell
+
+BLUE "Installing impacket..."
+git clone https://github.com/SecureAuthCorp/impacket.git tool_loc/impacket
+
+BLUE "Installing exploitdb..."
+sudo git clone https://github.com/offensive-security/exploitdb.git tool_loc/exploitdb
+sudo ln -sf tool_loc/exploitdb/searchsploit /usr/local/bin/searchsploit
+
+# BLUE "Install Real VNC Viewer..."
+# wget "https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.17.1113-Linux-x64.deb" -O vnc_viewer.deb
+# dpkg -i vnc_viewer.deb
+# rm vnc_viewer.deb
+
+# BLUE "Install Real VNC Connect (Server)..."
+# wget 'https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.2.1-Linux-x64.deb' -O vnc_server.deb
+# dpkg -i vnc_server.deb
+# rm vnc_server.deb
+
+# BLUE "Adding VNC Connect (Server) service to the default startup /etc/rc.local..."
+# grep "vncserver-x11-serviced.service" /etc/rc.local
+# if [ $? -eq 1 ]
+# then
+# 	echo "systemctl start vncserver-x11-serviced.service" >> ~/etc/rc.local
+# fi
+
+# BLUE "Installing Go..."
+# sudo apt install -y golang-go
+# BLUE "Adding GOPATH and GOBIN to .bashrc, so future installs are easy.."
+# grep "export GOPATH" ~/.bashrc
+# if [ $? -eq 1 ]
+# then
+# 	echo "export GOPATH=\$HOME/.go/" >> ~/.bashrc
+# fi
+# grep "export GOBIN" ~/.bashrc
+# if [ $? -eq 1 ]
+# then
+# 	echo "export GOBIN=\$HOME/.go/bin" >> ~/.bashrc
+# 	echo "export PATH=\$PATH:\$GOBIN" >> ~/.bashrc
+# fi
+
+# Packages to add
+# burpsuite
+# remmina: Remote Desktop Client
