@@ -6,7 +6,6 @@ GREEN=`tput bold && tput setaf 2`
 YELLOW=`tput bold && tput setaf 3`
 BLUE=`tput bold && tput setaf 4`
 NC=`tput sgr0`
-tool_loc=`/opt`
 
 function RED(){
 	echo -e "\n${RED}${1}${NC}"
@@ -74,12 +73,12 @@ sudo apt install -y wireshark
 
 BLUE "Installing VSCode..."
 wget "https://go.microsoft.com/fwlink/?LinkID=760868" -O vscode.deb
-sudo apt install vscode.deb
+sudo apt install ./vscode.deb
 rm vscode.deb
 
 BLUE "Installing VSCode ARM..."
 wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64" -O vscode_arm.deb
-sudo apt install vscode_arm.deb
+sudo apt install ./vscode_arm.deb
 rm vscode_arm.deb
 
 # BLUE "Installing Atom..."
@@ -156,41 +155,42 @@ sudo apt install -y python3-pip
 BLUE "Installing Python PIL..."
 sudo apt install -y python3-pil
 
-BLUE "Installing python-requests..."
-pip install requests
+#Python packages
+# BLUE "Installing python-requests..."
+# pip install requests
 
-BLUE "Installing Python flask..."
-pip install flask
+# BLUE "Installing Python flask..."
+# pip install flask
 
-BLUE "Installing Python flask-login..."
-pip install flask-login
+# BLUE "Installing Python flask-login..."
+# pip install flask-login
 
-BLUE "Installing Python colorama..."
-pip install colorama
+# BLUE "Installing Python colorama..."
+# pip install colorama
 
-BLUE "Installing Python passlib..."
-pip install passlib
+# BLUE "Installing Python passlib..."
+# pip install passlib
 
-BLUE "Installing Python pwntools..."
-pip install pwntools
+# BLUE "Installing Python pwntools..."
+# pip install pwntools
 
-BLUE "Installing Python scapy..."
-pip install scapy
+# BLUE "Installing Python scapy..."
+# pip install scapy
 
-BLUE "Installing Python library netifaces..."
-pip install netifaces
+# BLUE "Installing Python library netifaces..."
+# pip install netifaces
 
-BLUE "Installing Python library iptools..."
-pip install iptools
+# BLUE "Installing Python library iptools..."
+# pip install iptools
 
-BLUE "Installing Python library OpenSSL..."
-pip install pyopenssl
+# BLUE "Installing Python library OpenSSL..."
+# pip install pyopenssl
 
-BLUE "Installing Python library pydispatch..."
-pip install pydispatch
+# BLUE "Installing Python library pydispatch..."
+# pip install pydispatch
 
-BLUE "Installing impacket..."
-pip install impacket
+# BLUE "Installing impacket..."
+# pip install impacket
 
 #Installing various tools
 BLUE "Installing Binwalk..."
@@ -296,18 +296,18 @@ sudo apt install -y hashcat
 
 #Installing git tools and packages
 BLUE "Installing pusheen-sl..."
-git clone https://github.com/tryton-vanmeer/pusheen-sl.git $tool_loc/pusheen
-sudo $tool_loc/pusheen/install.sh
+git clone https://github.com/tryton-vanmeer/pusheen-sl.git /opt/pusheen
+sudo /opt/pusheen/install.sh
 
 BLUE "Installing php-reverse-shell..."
-git clone https://github.com/slattman/php-reverse-shell.git $tool_loc/php-reverse-shell
+git clone https://github.com/slattman/php-reverse-shell.git /opt/php-reverse-shell
 
 BLUE "Installing impacket..."
-git clone https://github.com/SecureAuthCorp/impacket.git $tool_loc/impacket
+git clone https://github.com/SecureAuthCorp/impacket.git /opt/impacket
 
 BLUE "Installing exploitdb..."
-sudo git clone https://github.com/offensive-security/exploitdb.git $tool_loc/exploitdb
-sudo ln -sf $tool_loc/exploitdb/searchsploit /usr/local/bin/searchsploit
+sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
+sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 
 # BLUE "Install Real VNC Viewer..."
 # wget "https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.17.1113-Linux-x64.deb" -O vnc_viewer.deb
