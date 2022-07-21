@@ -6,7 +6,7 @@ GREEN=`tput bold && tput setaf 2`
 YELLOW=`tput bold && tput setaf 3`
 BLUE=`tput bold && tput setaf 4`
 NC=`tput sgr0`
-tool_loc=`/opt/tools`
+tool_loc=`/opt`
 
 function RED(){
 	echo -e "\n${RED}${1}${NC}"
@@ -59,12 +59,12 @@ BLUE "Installing nano..."
 sudo apt install -y nano
 
 #Various Applications
-BLUE "Installing Sublime Text..." # according to https://www.sublimetext.com/docs/3/linux_repositories.html-
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-sudo apt install -y apt-transport-https
+BLUE "Installing Sublime Text..." #According to https://www.sublimetext.com/docs/linux_repositories.html
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg
+sudo apt-get install apt-transport-https
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt update
-sudo apt install -y sublime-text
+sudo apt-get update
+sudo apt-get install sublime-text
 
 BLUE "Installing sqlitebrowser..."
 sudo apt install -y sqlitebrowser
@@ -72,13 +72,23 @@ sudo apt install -y sqlitebrowser
 BLUE "Installing Wireshark..."
 sudo apt install -y wireshark
 
-BLUE "Installing Atom..."
-wget "https://atom.io/download/deb" -O atom.deb
-dpkg -i atom.deb
-rm atom.deb
+BLUE "Installing VSCode..."
+wget "https://go.microsoft.com/fwlink/?LinkID=760868" -O vscode.deb
+sudo apt install vscode.deb
+rm vscode.deb
 
-BLUE "Installing Virtualbox..."
-sudo apt install -y virtualbox-qt
+BLUE "Installing VSCode ARM..."
+wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64" -O vscode_arm.deb
+sudo apt install vscode_arm.deb
+rm vscode_arm.deb
+
+# BLUE "Installing Atom..."
+# wget "https://atom.io/download/deb" -O atom.deb
+# dpkg -i atom.deb
+# rm atom.deb
+
+# BLUE "Installing Virtualbox..."
+# sudo apt install -y virtualbox-qt
 
 BLUE "Installing GIMP..."
 sudo apt install -y gimp
@@ -99,16 +109,16 @@ sudo apt install -y mplayer
 # 	echo "export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
 # fi
 
-BLUE "Installing docker..."
-sudo apt install -y docker.io
-sudo groupadd docker
-sudo usermod -aG docker `logname`
+# BLUE "Installing docker..."
+# sudo apt install -y docker.io
+# sudo groupadd docker
+# sudo usermod -aG docker `logname`
 
-BLUE "Installing Vagrant..."
-sudo apt install -y vagrant
+# BLUE "Installing Vagrant..."
+# sudo apt install -y vagrant
 
-BLUE "Removing boilerplate home directories..."
-rmdir ~/Desktop ~/Documents ~/Downloads ~/Music ~/Pictures ~/Public ~/Templates ~/Videos
+# BLUE "Removing boilerplate home directories..."
+# rmdir ~/Desktop ~/Documents ~/Downloads ~/Music ~/Pictures ~/Public ~/Templates ~/Videos
 
 # BLUE "Installing guake..."
 # sudo apt-get install -y guake
@@ -141,10 +151,10 @@ BLUE "Installing python3..."
 sudo apt install -y python3
 
 BLUE "Installing pip..."
-sudo apt install -y python-pip
+sudo apt install -y python3-pip
 
 BLUE "Installing Python PIL..."
-sudo apt install -y python-pil
+sudo apt install -y python3-pil
 
 BLUE "Installing python-requests..."
 pip install requests
@@ -199,7 +209,7 @@ BLUE "Installing hexedit..."
 sudo apt install -y hexedit	
 
 BLUE "Installing sqlite..."
-sudo apt install -y sqlite	
+sudo apt install -y sqlite3	
 
 BLUE "Installing nikto..."
 sudo apt install -y nikto
@@ -214,18 +224,23 @@ BLUE "Installing pdfcrack..."
 sudo apt install -y pdfcrack
 
 BLUE "Installing Hopper..."
+# wget "https://www.hopperapp.com/HopperWeb/downloads/Hopper-v4-4.5.29-Linux.deb"
+# dpkg -i Hopper-v4-4.5.29-Linux.deb
+# rm Hopper-v4-4.5.29-Linux.deb
 wget "https://d2ap6ypl1xbe4k.cloudfront.net/Hopper-v4-4.3.14-Linux.deb"
 dpkg -i Hopper-v4-4.3.14-Linux.deb
 rm Hopper-v4-4.3.14-Linux.deb
 
-BLUE "Installing Oracle Java 8..."
-echo "" | sudo add-apt-repository ppa:webupd8team/java
-sudo apt update
-sudo apt install -y oracle-java8-installer
+BLUE "Installing Oracle Java..."
+sudo apt install -y default-jre
+sudo apt install -y default-jdk
+# echo "" | sudo add-apt-repository ppa:webupd8team/java
+# sudo apt update
+# sudo apt install -y oracle-java8-installer
 
 BLUE "Downloading stegsolve.jar..."
-wget "http://www.caesum.com/handbook/Stegsolve.jar" -O "stegsolve.jar"
-chmod +x "stegsolve.jar"
+wget "http://www.caesum.com/handbook/Stegsolve.jar" -O "/opt/stegsolve.jar"
+chmod +x "/opt/stegsolve.jar"
 
 BLUE "Installing fcrackzip..."
 sudo apt install -y fcrackzip
@@ -272,10 +287,6 @@ sudo apt install -y hashcat
 # BLUE "Installing mimikatz (Kali-Linux)..."
 # sudo apt install mimikatz
 
-BLUE "Installing exploitdb..."
-sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
-sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
-
 # BLUE "Installing exploitdb (Kali-Linux)..."
 #  sudo apt -y install exploitdb
 #  sudo apt -y install exploitdb-bin-sploits exploitdb-papers
@@ -285,18 +296,18 @@ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 
 #Installing git tools and packages
 BLUE "Installing pusheen-sl..."
-git clone https://github.com/tryton-vanmeer/pusheen-sl.git tool_loc/pusheen
-sudo tool_loc/pusheen/install.sh
+git clone https://github.com/tryton-vanmeer/pusheen-sl.git $tool_loc/pusheen
+sudo $tool_loc/pusheen/install.sh
 
 BLUE "Installing php-reverse-shell..."
-git clone https://github.com/slattman/php-reverse-shell.git tool_loc/php-reverse-shell
+git clone https://github.com/slattman/php-reverse-shell.git $tool_loc/php-reverse-shell
 
 BLUE "Installing impacket..."
-git clone https://github.com/SecureAuthCorp/impacket.git tool_loc/impacket
+git clone https://github.com/SecureAuthCorp/impacket.git $tool_loc/impacket
 
 BLUE "Installing exploitdb..."
-sudo git clone https://github.com/offensive-security/exploitdb.git tool_loc/exploitdb
-sudo ln -sf tool_loc/exploitdb/searchsploit /usr/local/bin/searchsploit
+sudo git clone https://github.com/offensive-security/exploitdb.git $tool_loc/exploitdb
+sudo ln -sf $tool_loc/exploitdb/searchsploit /usr/local/bin/searchsploit
 
 # BLUE "Install Real VNC Viewer..."
 # wget "https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.17.1113-Linux-x64.deb" -O vnc_viewer.deb
@@ -329,6 +340,13 @@ sudo ln -sf tool_loc/exploitdb/searchsploit /usr/local/bin/searchsploit
 # 	echo "export GOBIN=\$HOME/.go/bin" >> ~/.bashrc
 # 	echo "export PATH=\$PATH:\$GOBIN" >> ~/.bashrc
 # fi
+
+# BLUE "Installing Sublime Text..." # according to https://www.sublimetext.com/docs/3/linux_repositories.html-
+# wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+# sudo apt install -y apt-transport-https
+# echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+# sudo apt update
+# sudo apt install -y sublime-text
 
 # Packages to add
 # burpsuite
