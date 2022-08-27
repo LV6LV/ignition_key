@@ -89,11 +89,11 @@ rm vscode_arm.deb
 # BLUE "Installing Virtualbox..."
 # sudo apt install -y virtualbox-qt
 
-BLUE "Installing GIMP..."
-sudo apt install -y gimp
+#BLUE "Installing GIMP..."
+#sudo apt install -y gimp
 
-BLUE "Installing mplayer..."
-sudo apt install -y mplayer
+#BLUE "Installing mplayer..."
+#sudo apt install -y mplayer
 
 # BLUE "Installing terminator..."
 # sudo apt install -y terminator
@@ -122,11 +122,11 @@ sudo apt install -y mplayer
 # BLUE "Installing guake..."
 # sudo apt-get install -y guake
 
-BLUE "Installing openvpn..."
-sudo apt install -y openvpn
+#BLUE "Installing openvpn..."
+#sudo apt install -y openvpn
 
-BLUE "Installing nmap..."
-sudo apt install -y nmap
+#BLUE "Installing nmap..."
+#sudo apt install -y nmap
 
 # BLUE "Installing pinta..."
 # sudo apt-get install -y pinta
@@ -134,13 +134,13 @@ sudo apt install -y nmap
 BLUE "Installing exiftool..."
 sudo apt install -y exiftool
 
-BLUE "Installing xclip..."
-sudo apt install -y xclip
-grep "alias xclip" ~/.bashrc
-if [ $? -eq 1 ]
-then
-	echo "alias xclip='xclip -selection clipboard'" >> ~/.bashrc
-fi
+#BLUE "Installing xclip..."
+#sudo apt install -y xclip
+#grep "alias xclip" ~/.bashrc
+#if [ $? -eq 1 ]
+#then
+#	echo "alias xclip='xclip -selection clipboard'" >> ~/.bashrc
+#fi
 
 #Installing python and various packages
 BLUE "Installing idle (Python IDE)..."
