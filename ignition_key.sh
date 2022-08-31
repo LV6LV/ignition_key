@@ -36,8 +36,8 @@ sudo apt install -y git
 BLUE "Installing curl..."
 sudo apt install -y curl
 
-BLUE "Installing funny packages..."
-sudo apt install -y figlet toilet cowsay fortune boxes lolcat sl
+#BLUE "Installing funny packages..."
+#sudo apt install -y figlet toilet cowsay fortune boxes lolcat sl
 
 BLUE "Installing thefuck (cmd spelling corrector)..."
 sudo apt install -y thefuck
@@ -45,20 +45,16 @@ sudo apt install -y thefuck
 BLUE "Installing btop & htop..."
 sudo apt install -y btop htop
 
-BLUE "Installing ranger (CLI file manager)..."
-sudo apt install -y ranger
+#BLUE "Installing ranger (CLI file manager)..."
+#sudo apt install -y ranger
 
 <<NOTES
 (mobile  shell)  is  a  remote  terminal  application  that  supports  intermittent
-     connectivity, allows roaming, and provides speculative local echo and line editing of user
-      keystrokes.
-
-       Compared with ssh, mosh is more robust — its connections stay up across sleeps and changes
-       in the client's IP address — and more responsive, because  the  protocol  is  tolerant  of
-       packet  loss  and  the  client can echo most keystrokes immediately, without waiting for a
-       network round-trip.?
+connectivity, allows roaming, and provides speculative local echo and line editing of user keystrokes.
+Compared with ssh, mosh is more robust — its connections stay up across sleeps and changes 
+in the client's IP address — and more responsive, because  the  protocol  is  tolerant  of 
+packet  loss  and  the  client can echo most keystrokes immediately, without waiting for a network round-trip.
 NOTES
-
 BLUE "Installing mosh..."
 sudo apt install -y mosh
 
@@ -87,10 +83,10 @@ wget "https://go.microsoft.com/fwlink/?LinkID=760868" -O vscode.deb
 sudo apt install ./vscode.deb
 rm vscode.deb
 
-BLUE "Installing VSCode ARM..."
-wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64" -O vscode_arm.deb
-sudo apt install ./vscode_arm.deb
-rm vscode_arm.deb
+#BLUE "Installing VSCode ARM..."
+#wget "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64" -O vscode_arm.deb
+#sudo apt install ./vscode_arm.deb
+#rm vscode_arm.deb
 
 # BLUE "Installing Atom..."
 # wget "https://atom.io/download/deb" -O atom.deb
@@ -167,6 +163,7 @@ BLUE "Installing Python PIL..."
 sudo apt install -y python3-pil
 
 #Python packages
+
 # BLUE "Installing python-requests..."
 # pip install requests
 
@@ -207,9 +204,15 @@ sudo apt install -y python3-pil
 BLUE "Installing Binwalk..."
 sudo apt install -y binwalk
 
+<<NOTE
+OCR tool
+NOTE
 BLUE "Installing Tesseract..."
 sudo apt install -y tesseract-ocr
 
+<<NOTE
+Data recovery tool for linux
+NOTE
 BLUE "Installing foremost..."
 sudo apt install -y foremost
 
@@ -225,33 +228,39 @@ sudo apt install -y sqlite3
 BLUE "Installing nikto..."
 sudo apt install -y nikto
 
+<<NOTE
+Bar code reader suite
+NOTE
 BLUE "Installing zbarimg..."
 sudo apt install -y zbar-tools	
 
+<<NOTE
+Tool to encode data in a QR Code symbol
+NOTE
 BLUE "Installing qrencode..."
 sudo apt install -y qrencode
 
 BLUE "Installing pdfcrack..."
 sudo apt install -y pdfcrack
 
-BLUE "Installing Hopper..."
+#BLUE "Installing Hopper..."
 # wget "https://www.hopperapp.com/HopperWeb/downloads/Hopper-v4-4.5.29-Linux.deb"
 # dpkg -i Hopper-v4-4.5.29-Linux.deb
 # rm Hopper-v4-4.5.29-Linux.deb
-wget "https://d2ap6ypl1xbe4k.cloudfront.net/Hopper-v4-4.3.14-Linux.deb"
-dpkg -i Hopper-v4-4.3.14-Linux.deb
-rm Hopper-v4-4.3.14-Linux.deb
+#wget "https://d2ap6ypl1xbe4k.cloudfront.net/Hopper-v4-4.3.14-Linux.deb"
+#dpkg -i Hopper-v4-4.3.14-Linux.deb
+#rm Hopper-v4-4.3.14-Linux.deb
 
-BLUE "Installing Oracle Java..."
-sudo apt install -y default-jre
-sudo apt install -y default-jdk
+#BLUE "Installing Oracle Java..."
+#sudo apt install -y default-jre
+#sudo apt install -y default-jdk
 # echo "" | sudo add-apt-repository ppa:webupd8team/java
 # sudo apt update
 # sudo apt install -y oracle-java8-installer
 
-BLUE "Downloading stegsolve.jar..."
-wget "http://www.caesum.com/handbook/Stegsolve.jar" -O "/opt/stegsolve.jar"
-chmod +x "/opt/stegsolve.jar"
+#BLUE "Downloading stegsolve.jar..."
+#wget "http://www.caesum.com/handbook/Stegsolve.jar" -O "/opt/stegsolve.jar"
+#chmod +x "/opt/stegsolve.jar"
 
 BLUE "Installing fcrackzip..."
 sudo apt install -y fcrackzip
@@ -280,11 +289,11 @@ sudo apt install -y libcompress-raw-lzma-perl
 BLUE "Installing dos2unix..."
 sudo apt install -y dos2unix
 
-BLUE "Installing autopsy..."
-sudo apt install -y autopsy
+#BLUE "Installing autopsy..."
+#sudo apt install -y autopsy
 
-BLUE "Installing openvas..."
-sudo apt install -y openvas
+#BLUE "Installing openvas..."
+#sudo apt install -y openvas
 
 BLUE "Installing samba-client..."
 sudo apt install -y smbclient
@@ -295,20 +304,21 @@ sudo apt install -y samba
 BLUE "Installing hashcat..."
 sudo apt install -y hashcat
 
-# BLUE "Installing mimikatz (Kali-Linux)..."
-# sudo apt install mimikatz
+#BLUE "Installing mimikatz (Kali-Linux)..."
+#sudo apt install mimikatz
 
-# BLUE "Installing exploitdb (Kali-Linux)..."
-#  sudo apt -y install exploitdb
-#  sudo apt -y install exploitdb-bin-sploits exploitdb-papers
+#BLUE "Installing exploitdb (Kali-Linux)..."
+#sudo apt -y install exploitdb
+#sudo apt -y install exploitdb-bin-sploits exploitdb-papers
 
 # BLUE "Installing metasploit-framework..."
 # curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && chmod 755 msfinstall && ./msfinstall
 
 #Installing git tools and packages
-BLUE "Installing pusheen-sl..."
-git clone https://github.com/tryton-vanmeer/pusheen-sl.git /opt/pusheen
-sudo /opt/pusheen/install.sh
+
+#BLUE "Installing pusheen-sl..."
+#git clone https://github.com/tryton-vanmeer/pusheen-sl.git /opt/pusheen
+#sudo /opt/pusheen/install.sh
 
 BLUE "Installing php-reverse-shell..."
 git clone https://github.com/slattman/php-reverse-shell.git /opt/php-reverse-shell
@@ -319,6 +329,9 @@ git clone https://github.com/SecureAuthCorp/impacket.git /opt/impacket
 BLUE "Installing exploitdb..."
 sudo git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb
 sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
+
+BLUE "Installing remmina"
+sudo apt -y install remmina
 
 # BLUE "Install Real VNC Viewer..."
 # wget "https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.17.1113-Linux-x64.deb" -O vnc_viewer.deb
@@ -361,4 +374,3 @@ sudo ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 
 # Packages to add
 # burpsuite
-# remmina: Remote Desktop Client
