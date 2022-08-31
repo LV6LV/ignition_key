@@ -48,6 +48,17 @@ sudo apt install -y btop htop
 BLUE "Installing ranger (CLI file manager)..."
 sudo apt install -y ranger
 
+<<NOTES
+(mobile  shell)  is  a  remote  terminal  application  that  supports  intermittent
+     connectivity, allows roaming, and provides speculative local echo and line editing of user
+      keystrokes.
+
+       Compared with ssh, mosh is more robust — its connections stay up across sleeps and changes
+       in the client's IP address — and more responsive, because  the  protocol  is  tolerant  of
+       packet  loss  and  the  client can echo most keystrokes immediately, without waiting for a
+       network round-trip.?
+NOTES
+
 BLUE "Installing mosh..."
 sudo apt install -y mosh
 
